@@ -10,13 +10,18 @@ import java.util.List;
 public class Supplier {
 
     @Id
-    private String id;
-
+    private Long id;
     private String name;
 
-    @MappedCollection(idColumn = "address_id")
+    @MappedCollection(idColumn = "id")
     private Address address;
-    @MappedCollection(keyColumn = "supplier_id", idColumn = "supplier_id")
+    @MappedCollection(idColumn = "supplier_id", keyColumn = "id")
     private List<Order> orders;
+    @MappedCollection(idColumn = "supplier_id")
+    private List<RecipientRef> recipients;
+
+    public void addRecipient(Recipient recipient) {
+        recipients.add(new RecipientRef(recipient.getId()));
+    }
 
 }
