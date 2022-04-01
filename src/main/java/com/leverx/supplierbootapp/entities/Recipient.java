@@ -15,10 +15,5 @@ public class Recipient {
 
     @MappedCollection(idColumn = "id")
     private Address address;
-    @MappedCollection(idColumn = "recipient_id")
-    private List<SupplierRef> suppliers;
-
-    public void addSupplier(Supplier supplier) {
-        suppliers.add(new SupplierRef(supplier.getId()));
-    }
+    private List<Supplier> suppliers;
 }
