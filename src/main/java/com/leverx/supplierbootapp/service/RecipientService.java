@@ -18,7 +18,8 @@ public class RecipientService {
     }
 
     public List<Recipient> getRecipientsBySupplierId(Long id){
-        return recipientRepository.findAllBySupplierId(id);
+        List<Recipient> recipients = recipientRepository.findAllBySupplierId(id);
+        return recipients;
     }
 
 }

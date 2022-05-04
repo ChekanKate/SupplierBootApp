@@ -1,7 +1,6 @@
 package com.leverx.supplierbootapp;
 
 import com.leverx.supplierbootapp.entity.Address;
-import com.leverx.supplierbootapp.repository.AddressRepository;
 import com.leverx.supplierbootapp.service.AddressService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(classes = SupplierBootAppApplication.class)
 @ActiveProfiles("test")
 public class AddressServiceTest {
-
-    @Autowired
-    private AddressRepository addressRepository;
 
     @Autowired
     private AddressService addressService;
@@ -34,9 +30,10 @@ public class AddressServiceTest {
     }
 
     @Test
-    public void testFindById() {
+    public void findByIdTest() {
         Address expected = new Address(105L, "Ukraine", "Mukachevo", "Petefi", 108);
         Address actual = addressService.findById(105L);
         assertEquals(expected, actual);
     }
+
 }

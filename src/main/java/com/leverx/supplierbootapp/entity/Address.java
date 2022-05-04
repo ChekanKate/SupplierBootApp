@@ -1,5 +1,6 @@
 package com.leverx.supplierbootapp.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -9,6 +10,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Table("ADDRESS")
 public class Address {
 
@@ -23,6 +25,8 @@ public class Address {
     private String street;
     @Column("BUILDING")
     private Integer building;
+    @Column("TENANT_ID")
+    private Long tenantId;
 
     public Address(String country, String city, String street, Integer building) {
         this.country = country;

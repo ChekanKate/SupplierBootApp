@@ -1,7 +1,7 @@
 INSERT INTO "SUPPLIER" VALUES
     (201, 'LeverX', 101),
     (202, 'SoftServe', 102),
-    (203, 'SupplierForDelete', 102);;
+    (203, 'SupplierForDelete', 102);
 
 INSERT INTO "ORDER" VALUES
    (401, 'Order 1 to LeverX', 30000, 201),
@@ -18,7 +18,9 @@ INSERT INTO "PRODUCT" ("ID", "NAME", "PRICE", "ORDER_ID") VALUES
 INSERT INTO "ADDRESS" ("ADDRESS_ID", "COUNTRY", "CITY", "STREET", "BUILDING", "TENANT_ID") VALUES
     (101, 'Ukraine', 'Kyiv', 'Franka', 31, 201),
     (102, 'Poland', 'Wroclaw', 'Maja', 23, 202),
-    (105, 'Ukraine', 'Mukachevo', 'Petefi', 108, 200);
+    (105, 'Ukraine', 'Mukachevo', 'Petefi', 108, 303),
+    (103, 'UK', 'London', 'Some street', 34, 301),
+    (104, 'Germany', 'Berlin', 'Street', 58, 302);
 
 INSERT INTO "RECIPIENT" ("ID", "NAME", "ADDRESS_ID") VALUES
    (301, 'Candy Shop', 103),

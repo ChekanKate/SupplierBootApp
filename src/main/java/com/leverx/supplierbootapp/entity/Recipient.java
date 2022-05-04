@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -17,11 +19,10 @@ public class Recipient {
     private Long id;
     @Column("NAME")
     private String name;
+    @MappedCollection(idColumn = "TENANT_ID")
+    private Set<Address> address;
 
-//    @MappedCollection(idColumn = "TENANT_ID")
-//    private Address address;
-
-    @Column("ADDRESS_ID")
-    private Long addressId;
+//    @Column("ADDRESS_ID")
+//    private Long addressId;
 
 }

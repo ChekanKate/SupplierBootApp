@@ -2,7 +2,6 @@ package com.leverx.supplierbootapp.service;
 
 import com.leverx.supplierbootapp.entity.Recipient;
 import com.leverx.supplierbootapp.entity.Supplier;
-import com.leverx.supplierbootapp.repository.RecipientRepository;
 import com.leverx.supplierbootapp.repository.SupplierRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +16,19 @@ import java.util.Set;
 public class SupplierService {
 
     private SupplierRepository supplierRepository;
-    private RecipientRepository recipientRepository;
+    private RecipientService recipientService;
 
     @Autowired
-    public SupplierService(SupplierRepository supplierRepository, RecipientRepository recipientRepository) {
+    public SupplierService(SupplierRepository supplierRepository, RecipientService recipientService) {
         this.supplierRepository = supplierRepository;
-        this.recipientRepository = recipientRepository;
+        this.recipientService = recipientService;
     }
 
     public Supplier findSupplierById(Long id) {
         Supplier supplier = supplierRepository.findById(id).orElse(null);
         if(supplier != null) {
             Set<Recipient> recipients = new HashSet<>();
-            recipients.addAll(recipientRepository.findAllBySupplierId(id));
+            recipients.addAll(recipientService.getRecipientsBySupplierId(id));
             supplier.setRecipients(recipients);
         }
         return supplier;
@@ -44,9 +43,13 @@ public class SupplierService {
     }
 
     public List<Supplier> findAllSuppliers() {
-        return (List<Supplier>) supplierRepository.findAll();
+        List<Supplier> suppliers = (List<Supplier>) supplierRepository.findAll();
+        for(Supplier supplier : suppliers) {
+            Set<Recipient> recipients = new HashSet<>();
+            recipients.addAll(recipientService.getRecipientsBySupplierId(supplier.getId()));
+            supplier.setRecipients(recipients);
+        }
+        return suppliers;
     }
-
-
 
 }

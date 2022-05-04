@@ -29,15 +29,15 @@ class SupplierServiceTests {
         assertThat(savedSupplier.getId()).isNotNull();
     }
 
-    @Test
-    public void updateSupplierTest() {
-        Supplier supplier = supplierService.findSupplierById(201L);
-        supplier.setName("LeverX Group");
-
-        supplierService.saveOrUpdateSupplier(supplier);
-        Supplier updatedSupplier = supplierService.findSupplierById(201L);
-        assertThat(updatedSupplier.getName()).isEqualTo("LeverX Group");
-    }
+//    @Test
+//    public void updateSupplierTest() {
+//        Supplier supplier = supplierService.findSupplierById(201L);
+//        supplier.setName("LeverX Group");
+//
+//        supplierService.saveOrUpdateSupplier(supplier);
+//        Supplier updatedSupplier = supplierService.findSupplierById(201L);
+//        assertThat(updatedSupplier.getName()).isEqualTo("LeverX Group");
+//    }
 
     @Test
     public void deleteSupplierTest() {
@@ -58,18 +58,21 @@ class SupplierServiceTests {
         Order order1 = new Order(403L, "Order 1 to SoftServe", 120000.0, 202L, products);
         Set<Order> orders = new HashSet<>();
         orders.add(order1);
-        Address address = new Address(102L, "Poland", "Wroclaw", "Maja", 23);
-        Recipient recipient1 = new Recipient(301L, "Candy Shop", 103L);
-        Recipient recipient2 = new Recipient(303L, "School", 105L);
+        Address address1 = new Address(102L, "Poland", "Wroclaw", "Maja", 23, 202L);
+        Address address2 = new Address(105L, "Ukraine", "Mukachevo", "Petefi", 108, 303L);
+        Address address3 = new Address(103L, "UK", "London", "Some street", 34, 301L);
+        Set<Address> addresses1 = new HashSet<>();
+        addresses1.add(address1);
+        Set<Address> addresses2 = new HashSet<>();
+        addresses2.add(address2);
+        Set<Address> addresses3 = new HashSet<>();
+        addresses3.add(address3);
+        Recipient recipient1 = new Recipient(301L, "Candy Shop", addresses3);
+        Recipient recipient2 = new Recipient(303L, "School", addresses2);
         Set<Recipient> recipients = new HashSet<>();
-        recipients.add(recipient1);
         recipients.add(recipient2);
-//        Set<RecipientRef> recipients = new HashSet<>();
-//        recipients.add(new RecipientRef(recipient1.getId()));
-//        recipients.add();
-        Supplier expectedSupplier = new Supplier(202L, "SoftServe", address, orders, recipients);
-//        expectedSupplier.addRecipient(recipient1);
-//        expectedSupplier.addRecipient(recipient2);
+        recipients.add(recipient1);
+        Supplier expectedSupplier = new Supplier(202L, "SoftServe", address1, orders, recipients);
         Supplier actual = supplierService.findSupplierById(202L);
         assertEquals(expectedSupplier, actual);
     }
@@ -79,5 +82,7 @@ class SupplierServiceTests {
         List<Supplier> suppliers = supplierService.findAllSuppliers();
         assertThat(suppliers.size()).isEqualTo(3);
     }
+
+
 
 }
