@@ -11,22 +11,22 @@ import java.util.Set;
 
 @Data
 @AllArgsConstructor
-@Table("ORDER")
+@Table("order")
 public class Order {
 
     @Id
-    @Column("ID")
+    @Column("id")
     private Long id;
-    @Column("NAME")
+    @Column("name")
     private String name;
-    @Column("PRICE")
+    @Column("price")
     private Double price;
 
     ///add link to supplier
-    @Column("SUPPLIER_ID")
+    @Column("supplier_id")
     private Long supplierId;
 
-    @MappedCollection(idColumn = "ORDER_ID")
+    @MappedCollection(idColumn = "order_id")
     private Set<Product> products;
 
 //    public Order(String name, Double price, Long supplierId, Set<Product> products) {

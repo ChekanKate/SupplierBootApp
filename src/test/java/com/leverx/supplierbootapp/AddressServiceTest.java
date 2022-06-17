@@ -18,10 +18,6 @@ public class AddressServiceTest {
     private AddressService addressService;
 
     @Test
-    void contextLoads() {
-    }
-
-    @Test
     public void saveAddressTest () {
         Address address = new Address("Country", "Сity", "Street", 34);
         assertThat(address.getId()).isNull();

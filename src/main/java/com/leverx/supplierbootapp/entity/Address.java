@@ -11,21 +11,21 @@ import org.springframework.data.relational.core.mapping.Table;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("ADDRESS")
+@Table("address")
 public class Address {
 
     @Id
-    @Column("ADDRESS_ID")
+    @Column("address_id")
     private Long id;
-    @Column("COUNTRY")
+    @Column("country")
     private String country;
-    @Column("CITY")
+    @Column("city")
     private String city;
-    @Column("STREET")
+    @Column("street")
     private String street;
-    @Column("BUILDING")
+    @Column("building")
     private Integer building;
-    @Column("TENANT_ID")
+    @Column("tenant_id")
     private Long tenantId;
 
     public Address(String country, String city, String street, Integer building) {
@@ -42,5 +42,53 @@ public class Address {
         this.city = city;
         this.street = street;
         this.building = building;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public Integer getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(Integer building) {
+        this.building = building;
+    }
+
+    public Long getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(Long tenantId) {
+        this.tenantId = tenantId;
     }
 }

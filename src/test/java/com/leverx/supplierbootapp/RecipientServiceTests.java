@@ -11,17 +11,17 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(classes = SupplierBootAppApplication.class)
-@ActiveProfiles("test")
-public class RecipientServiceTests {
-
-    @Autowired
-    private RecipientService recipientService;
-
-    @Test
-    public void getRecipientsById() {
-        List<Recipient> recipients = recipientService.getRecipientsBySupplierId(201L);
-        assertThat(recipients).isNotNull();
-    }
-
-}
+//@SpringBootTest(classes = SupplierBootAppApplication.class)
+//@ActiveProfiles("test")
+//public class RecipientServiceTests {
+//
+//    @Autowired
+//    private RecipientService recipientService;
+//
+//    @Test
+//    public void getRecipientsById() {
+//        List<Recipient> recipients = recipientService.getRecipientsBySupplierId(201L);
+//        assertThat(recipients).isNotNull();
+//    }
+//
+//}

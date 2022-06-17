@@ -3,7 +3,6 @@ package com.leverx.supplierbootapp.service;
 import com.leverx.supplierbootapp.entity.Recipient;
 import com.leverx.supplierbootapp.entity.Supplier;
 import com.leverx.supplierbootapp.repository.SupplierRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +11,10 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-@RequiredArgsConstructor
 public class SupplierService {
 
-    private SupplierRepository supplierRepository;
-    private RecipientService recipientService;
+    private final SupplierRepository supplierRepository;
+    private final RecipientService recipientService;
 
     @Autowired
     public SupplierService(SupplierRepository supplierRepository, RecipientService recipientService) {

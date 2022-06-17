@@ -12,21 +12,21 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest(classes = SupplierBootAppApplication.class)
-@ActiveProfiles("test")
-public class OrderServiceTests {
-
-    @Autowired
-    private OrderRepository orderRepository;
-
-    @Autowired
-    private OrderService orderService;
-
-    @Test
-    public void testFindById() {
-        Order expected = new Order(401L, "Order 1 to LeverX", 30000d, 201L, Collections.emptySet());
-        Order actual = orderService.findById(401L);
-        assertEquals(expected.getName(), actual.getName());
-    }
-
-}
+//@SpringBootTest(classes = SupplierBootAppApplication.class)
+//@ActiveProfiles("test")
+//public class OrderServiceTests {
+//
+//    @Autowired
+//    private OrderRepository orderRepository;
+//
+//    @Autowired
+//    private OrderService orderService;
+//
+//    @Test
+//    public void testFindById() {
+//        Order expected = new Order(401L, "Order 1 to LeverX", 30000d, 201L, Collections.emptySet());
+//        Order actual = orderService.findById(401L);
+//        assertEquals(expected.getName(), actual.getName());
+//    }
+//
+//}

@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class RecipientService {
 
-    private RecipientRepository recipientRepository;
+    private final RecipientRepository recipientRepository;
 
     @Autowired
     public RecipientService(RecipientRepository recipientRepository) {

@@ -6,10 +6,10 @@ import org.springframework.data.relational.core.mapping.Table;
 
 @Data
 //@AllArgsConstructor
-@Table("SUPPLIER_RECIPIENT")
+@Table("supplier_recipient")
 public class RecipientRef {
 
-    @Column("RECIPIENT_ID")
+    @Column("recipient_id")
     private Long recipientId;
 
     public RecipientRef(Long recipientId) {

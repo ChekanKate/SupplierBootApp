@@ -8,26 +8,25 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.List;
 import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("SUPPLIER")
+@Table("supplier")
 public class Supplier {
 
     @Id
-    @Column("ID")
+    @Column("id")
     private Long id;
-    @Column("NAME")
+    @Column("name")
     private String name;
-    @MappedCollection(idColumn = "TENANT_ID")
+    @MappedCollection(idColumn = "tenant_id")
     private Address address;
-    @MappedCollection(idColumn = "SUPPLIER_ID")
+    @MappedCollection(idColumn = "supplier_id")
     private Set<Order> orders;
 
-    @MappedCollection(idColumn = "ID")
+    @MappedCollection(idColumn = "id")
     private Set<Recipient> recipients;
 
     public Supplier(String name, Address address, Set<Order> orders, Set<Recipient> recipients) {
@@ -37,4 +36,43 @@ public class Supplier {
         this.recipients = recipients;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Set<Recipient> getRecipients() {
+        return recipients;
+    }
+
+    public void setRecipients(Set<Recipient> recipients) {
+        this.recipients = recipients;
+    }
 }

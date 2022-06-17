@@ -11,15 +11,15 @@ import java.util.Set;
 
 @Data
 @AllArgsConstructor
-@Table("RECIPIENT")
+@Table("recipient")
 public class Recipient {
 
     @Id
-    @Column("ID")
+    @Column("id")
     private Long id;
-    @Column("NAME")
+    @Column("name")
     private String name;
-    @MappedCollection(idColumn = "TENANT_ID")
+    @MappedCollection(idColumn = "tenant_id")
     private Set<Address> address;
 
 //    @Column("ADDRESS_ID")

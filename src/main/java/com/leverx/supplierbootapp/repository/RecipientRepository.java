@@ -12,16 +12,10 @@ import java.util.List;
 @Repository
 public interface RecipientRepository extends CrudRepository<Recipient, Long> {
 
-//    @Query("SELECT R.ID AS ID, R.NAME AS NAME, A.ADDRESS_ID AS A_ADDRESS_ID, A.CITY AS A_CITY, " +
-//           "A.STREET AS A_STREET, A.COUNTRY AS A_COUNTRY, A.BUILDING AS A_BUILDING " +
-//           "FROM RECIPIENT R JOIN SUPPLIER_RECIPIENT SR ON R.ID = SR.RECIPIENT_ID " +
-//           "LEFT OUTER JOIN ADDRESS A ON A.TENANT_ID = R.ID " +
-//           "WHERE SR.SUPPLIER_ID = :supplierId")
-
     @Query("SELECT * " +
-            "FROM RECIPIENT R JOIN SUPPLIER_RECIPIENT SR ON R.ID = SR.RECIPIENT_ID " +
-            "LEFT JOIN ADDRESS A ON A.TENANT_ID = SR.RECIPIENT_ID " +
-            "WHERE SR.SUPPLIER_ID = :supplierId")
+            "FROM recipient r JOIN supplier_recipient sr ON r.id = sr.recipient_id " +
+            "LEFT JOIN address a ON a.tenant_id = sr.recipient_id " +
+            "WHERE sr.supplier_id = :supplierId")
     List<Recipient> findAllBySupplierId(@Param("supplierId") Long supplierId);
 
 }

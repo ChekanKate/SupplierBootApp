@@ -8,17 +8,17 @@ import org.springframework.data.relational.core.mapping.Table;
 
 @Data
 @AllArgsConstructor
-@Table("PRODUCT")
+@Table("product")
 public class Product {
 
     @Id
-    @Column("ID")
+    @Column("id")
     private Long id;
-    @Column("NAME")
+    @Column("name")
     private String name;
-    @Column("PRICE")
+    @Column("price")
     private Integer price;
-    @Column("ORDER_ID")
+    @Column("order_id")
     private Long order_id;
 
 //    public Product(String name, Integer price, Long order_id) {
