@@ -1,6 +1,8 @@
 package com.leverx.supplierbootapp.controller;
 
+import com.leverx.supplierbootapp.dto.SupplierDTO;
 import com.leverx.supplierbootapp.entity.Supplier;
+import com.leverx.supplierbootapp.mapper.MapStructMapper;
 import com.leverx.supplierbootapp.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,14 +18,18 @@ public class SupplierControllerL2 {
     @Autowired
     private SupplierService supplierService;
 
+    @Autowired
+    private MapStructMapper mapStructMapper;
+
     @GetMapping()
     public ResponseEntity<List<Supplier>> getAllSuppliers(){
         return ResponseEntity.status(HttpStatus.OK).body(supplierService.findAllSuppliers());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Supplier> getSupplierById(@PathVariable Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(supplierService.findSupplierById(id));
+    public ResponseEntity<SupplierDTO> getSupplierById(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(mapStructMapper.supplierToSupplierDTO(supplierService.findSupplierById(id)));
     }
 
     @DeleteMapping("/{id}")

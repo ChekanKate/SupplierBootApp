@@ -13,9 +13,9 @@ import java.util.List;
 public interface RecipientRepository extends CrudRepository<Recipient, Long> {
 
     @Query("SELECT * " +
-            "FROM recipient r JOIN supplier_recipient sr ON r.id = sr.recipient_id " +
-            "LEFT JOIN address a ON a.tenant_id = sr.recipient_id " +
-            "WHERE sr.supplier_id = :supplierId")
+            "FROM \"recipient\" \"r\" JOIN \"supplier_recipient\" \"sr\" ON \"r\".\"id\" = \"sr\".\"recipient_id\" " +
+            "LEFT JOIN \"address\" \"a\" ON \"a\".\"tenant_id\" = \"sr\".\"recipient_id\" " +
+            "WHERE \"sr\".\"supplier_id\" = :supplierId")
     List<Recipient> findAllBySupplierId(@Param("supplierId") Long supplierId);
 
 }

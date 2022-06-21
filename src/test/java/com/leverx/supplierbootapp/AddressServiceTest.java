@@ -19,7 +19,7 @@ public class AddressServiceTest {
 
     @Test
     public void saveAddressTest () {
-        Address address = new Address("Country", "Сity", "Street", 34);
+        Address address = new Address("Country", "Сity", "Street", 34, 305L);
         assertThat(address.getId()).isNull();
         Address savedAddress = addressService.saveOrUpdateAddress(address);
         assertThat(savedAddress.getId()).isNotNull();
@@ -27,7 +27,7 @@ public class AddressServiceTest {
 
     @Test
     public void findByIdTest() {
-        Address expected = new Address(105L, "Ukraine", "Mukachevo", "Petefi", 108);
+        Address expected = new Address(105L, "Ukraine", "Mukachevo", "Petefi", 108, 303L);
         Address actual = addressService.findById(105L);
         assertEquals(expected, actual);
     }

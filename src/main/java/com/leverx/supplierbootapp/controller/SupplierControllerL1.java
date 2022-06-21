@@ -1,7 +1,6 @@
 package com.leverx.supplierbootapp.controller;
 
 import com.leverx.supplierbootapp.entity.Supplier;
-import com.leverx.supplierbootapp.request.MyRequestBody;
 import com.leverx.supplierbootapp.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

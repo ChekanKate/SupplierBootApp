@@ -1,16 +1,11 @@
 package com.leverx.supplierbootapp.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+import java.util.Objects;
+
 @Table("address")
 public class Address {
 
@@ -28,20 +23,33 @@ public class Address {
     @Column("tenant_id")
     private Long tenantId;
 
-    public Address(String country, String city, String street, Integer building) {
-        this.country = country;
-        this.city = city;
-        this.street = street;
-        this.building = building;
+    public Address() {
     }
 
-    @PersistenceConstructor
     public Address(Long id, String country, String city, String street, Integer building) {
         this.id = id;
         this.country = country;
         this.city = city;
         this.street = street;
         this.building = building;
+    }
+
+    public Address(String country, String city, String street, Integer building, Long tenantId) {
+        this.id = id;
+        this.country = country;
+        this.city = city;
+        this.street = street;
+        this.building = building;
+        this.tenantId = tenantId;
+    }
+
+    public Address(Long id, String country, String city, String street, Integer building, Long tenantId) {
+        this.id = id;
+        this.country = country;
+        this.city = city;
+        this.street = street;
+        this.building = building;
+        this.tenantId = tenantId;
     }
 
     public Long getId() {
@@ -90,5 +98,18 @@ public class Address {
 
     public void setTenantId(Long tenantId) {
         this.tenantId = tenantId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return Objects.equals(id, address.id) && Objects.equals(country, address.country) && Objects.equals(city, address.city) && Objects.equals(street, address.street) && Objects.equals(building, address.building) && Objects.equals(tenantId, address.tenantId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, country, city, street, building, tenantId);
     }
 }
