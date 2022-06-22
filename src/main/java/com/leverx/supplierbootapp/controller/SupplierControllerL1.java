@@ -1,12 +1,15 @@
 package com.leverx.supplierbootapp.controller;
 
+import com.leverx.supplierbootapp.dto.SupplierDTO;
 import com.leverx.supplierbootapp.entity.Supplier;
+import com.leverx.supplierbootapp.mapper.MapStructMapper;
 import com.leverx.supplierbootapp.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,14 +19,22 @@ public class SupplierControllerL1 {
     @Autowired
     private SupplierService supplierService;
 
+    @Autowired
+    private MapStructMapper mapStructMapper;
+
     @PostMapping()
-    public ResponseEntity<List<Supplier>> getAllSuppliers() {
-        return ResponseEntity.status(HttpStatus.OK).body(supplierService.findAllSuppliers());
+    public ResponseEntity<List<SupplierDTO>> getAllSuppliers() {
+        List<Supplier> supplierList = supplierService.findAllSuppliers();
+        List<SupplierDTO> supplierDTOS = new ArrayList<>();
+        for(int i = 0; i < supplierList.size(); i++) {
+            supplierDTOS.add(mapStructMapper.supplierToSupplierDTO(supplierList.get(i)));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(supplierDTOS);
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<Supplier> getSupplierById(@PathVariable Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(supplierService.findSupplierById(id));
+    public ResponseEntity<SupplierDTO> getSupplierById(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(mapStructMapper.supplierToSupplierDTO(supplierService.findSupplierById(id)));
     }
 
     @PostMapping("/{id}/delete")
@@ -33,13 +44,15 @@ public class SupplierControllerL1 {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<Supplier> updateSupplier(@RequestBody Supplier supplier) {
-        return ResponseEntity.status(HttpStatus.OK).body(supplierService.saveOrUpdateSupplier(supplier));
+    public ResponseEntity<SupplierDTO> updateSupplier(@RequestBody SupplierDTO supplierDTO) {
+        return ResponseEntity.status(HttpStatus.OK).body(mapStructMapper.supplierToSupplierDTO(
+                supplierService.saveOrUpdateSupplier(mapStructMapper.supplierDTOToSupplier(supplierDTO))));
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Supplier> addSupplier(@RequestBody Supplier supplier) {
-        return ResponseEntity.status(HttpStatus.OK).body(supplierService.saveOrUpdateSupplier(supplier));
+    public ResponseEntity<SupplierDTO> addSupplier(@RequestBody SupplierDTO supplierDTO) {
+        return ResponseEntity.status(HttpStatus.OK).body(mapStructMapper.supplierToSupplierDTO(
+                supplierService.saveOrUpdateSupplier(mapStructMapper.supplierDTOToSupplier(supplierDTO))));
     }
 
 }
