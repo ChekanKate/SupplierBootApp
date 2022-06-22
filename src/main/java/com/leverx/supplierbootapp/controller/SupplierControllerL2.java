@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -22,8 +23,13 @@ public class SupplierControllerL2 {
     private MapStructMapper mapStructMapper;
 
     @GetMapping()
-    public ResponseEntity<List<Supplier>> getAllSuppliers(){
-        return ResponseEntity.status(HttpStatus.OK).body(supplierService.findAllSuppliers());
+    public ResponseEntity<List<SupplierDTO>> getAllSuppliers(){
+        List<Supplier> supplierList = supplierService.findAllSuppliers();
+        List<SupplierDTO> supplierDTOS = new ArrayList<>();
+        for(int i = 0; i < supplierList.size(); i++) {
+            supplierDTOS.add(mapStructMapper.supplierToSupplierDTO(supplierList.get(i)));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(supplierDTOS);
     }
 
     @GetMapping("/{id}")
@@ -39,13 +45,15 @@ public class SupplierControllerL2 {
     }
 
     @PutMapping()
-    public ResponseEntity<Supplier> updateSupplier(@RequestBody Supplier supplier) {
-        return ResponseEntity.status(HttpStatus.OK).body(supplierService.saveOrUpdateSupplier(supplier));
+    public ResponseEntity<SupplierDTO> updateSupplier(@RequestBody SupplierDTO supplierDTO) {
+        return ResponseEntity.status(HttpStatus.OK).body(mapStructMapper.supplierToSupplierDTO(
+                supplierService.saveOrUpdateSupplier(mapStructMapper.supplierDTOToSupplier(supplierDTO))));
     }
 
     @PostMapping()
-    public ResponseEntity<Supplier> addSupplier(@RequestBody Supplier supplier) {
-        return ResponseEntity.status(HttpStatus.OK).body(supplierService.saveOrUpdateSupplier(supplier));
+    public ResponseEntity<SupplierDTO> addSupplier(@RequestBody SupplierDTO supplierDTO) {
+        return ResponseEntity.status(HttpStatus.OK).body(mapStructMapper.supplierToSupplierDTO(
+                supplierService.saveOrUpdateSupplier(mapStructMapper.supplierDTOToSupplier(supplierDTO))));
     }
 
 }
