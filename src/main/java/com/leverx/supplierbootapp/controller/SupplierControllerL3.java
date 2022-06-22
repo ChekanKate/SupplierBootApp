@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/v4/suppliers")
@@ -41,6 +42,14 @@ public class SupplierControllerL3 {
         return result;
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<SupplierDTO> getSupplierById(@PathVariable Long id) {
+        SupplierDTO supplierDTO = mapStructMapper.supplierToSupplierDTO(supplierService.findSupplierById(id));
+        supplierDTO.add(linkTo(methodOn(SupplierControllerL3.class).getSupplierById(id)).withSelfRel());
+        supplierDTO.add(linkTo(methodOn(SupplierControllerL3.class).getAllSuppliers()).withRel("allSuppliers"));
+        return ResponseEntity.status(HttpStatus.OK).body(supplierDTO);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSupplierById(@PathVariable Long id) {
         supplierService.deleteSupplierById(id);
@@ -48,13 +57,15 @@ public class SupplierControllerL3 {
     }
 
     @PutMapping()
-    public ResponseEntity<Supplier> updateSupplier(@RequestBody Supplier supplier) {
-        return ResponseEntity.status(HttpStatus.OK).body(supplierService.saveOrUpdateSupplier(supplier));
+    public ResponseEntity<SupplierDTO> updateSupplier(@RequestBody SupplierDTO supplierDTO) {
+        return ResponseEntity.status(HttpStatus.OK).body(mapStructMapper.supplierToSupplierDTO(
+                supplierService.saveOrUpdateSupplier(mapStructMapper.supplierDTOToSupplier(supplierDTO))));
     }
 
     @PostMapping()
-    public ResponseEntity<Supplier> addSupplier(@RequestBody Supplier supplier) {
-        return ResponseEntity.status(HttpStatus.OK).body(supplierService.saveOrUpdateSupplier(supplier));
+    public ResponseEntity<SupplierDTO> addSupplier(@RequestBody SupplierDTO supplierDTO) {
+        return ResponseEntity.status(HttpStatus.OK).body(mapStructMapper.supplierToSupplierDTO(
+                supplierService.saveOrUpdateSupplier(mapStructMapper.supplierDTOToSupplier(supplierDTO))));
     }
 
 }
