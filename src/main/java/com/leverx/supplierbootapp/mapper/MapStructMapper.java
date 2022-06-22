@@ -9,4 +9,6 @@ public interface MapStructMapper {
 
     SupplierDTO supplierToSupplierDTO(Supplier supplier);
 
+    Supplier supplierDTOToSupplier(SupplierDTO supplierDTO);
+
 }

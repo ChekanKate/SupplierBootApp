@@ -1,6 +1,6 @@
 package com.leverx.supplierbootapp.request;
 
-import com.leverx.supplierbootapp.entity.Supplier;
+import com.leverx.supplierbootapp.dto.SupplierDTO;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -10,7 +10,7 @@ public class MyRequestBody {
 
     private Long id;
 
-    private Supplier supplier;
+    private SupplierDTO supplierDTO;
 
     public String getAction() {
         return action;
@@ -28,11 +28,11 @@ public class MyRequestBody {
         this.id = id;
     }
 
-    public Supplier getSupplier() {
-        return supplier;
+    public SupplierDTO getSupplierDTO() {
+        return supplierDTO;
     }
 
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
+    public void setSupplierDTO(SupplierDTO supplierDTO) {
+        this.supplierDTO = supplierDTO;
     }
 }

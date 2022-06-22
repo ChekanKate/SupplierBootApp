@@ -1,6 +1,8 @@
 package com.leverx.supplierbootapp.controller;
 
+import com.leverx.supplierbootapp.dto.SupplierDTO;
 import com.leverx.supplierbootapp.entity.Supplier;
+import com.leverx.supplierbootapp.mapper.MapStructMapper;
 import com.leverx.supplierbootapp.request.MyRequestBody;
 import com.leverx.supplierbootapp.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +21,20 @@ public class SupplierControllerL0 {
     @Autowired
     private SupplierService supplierService;
 
+    @Autowired
+    private MapStructMapper mapStructMapper;
+
     @PostMapping(value = "/suppliers")
-    public ResponseEntity<List<Supplier>> allActionsWithSupplier(@RequestBody MyRequestBody request) {
-        List<Supplier> result = new ArrayList<>();
+    public ResponseEntity<List<SupplierDTO>> allActionsWithSupplier(@RequestBody MyRequestBody request) {
+        List<SupplierDTO> result = new ArrayList<>();
         String action = request.getAction();
 
         if(Objects.equals(action, "GET")) {
             Long id = request.getId();
             result = getSuppliers(id);
         } else if(Objects.equals(action, "POST") || Objects.equals(action, "PUT") || Objects.equals(action, "PATCH")) {
-            Supplier supplier = request.getSupplier();
-            result.add(postSupplier(supplier));
+            SupplierDTO supplierDTO = request.getSupplierDTO();
+            result.add(postSupplier(supplierDTO));
         } else if(Objects.equals(action, "DELETE")) {
             Long id = request.getId();
             deleteSupplier(id);
@@ -40,18 +45,21 @@ public class SupplierControllerL0 {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
-    public List<Supplier> getSuppliers(Long id){
-        List<Supplier> supplierList = new ArrayList<>();
+    public List<SupplierDTO> getSuppliers(Long id){
+        List<SupplierDTO> supplierDTOList = new ArrayList<>();
         if(id != null) {
-            supplierList.add(supplierService.findSupplierById(Long.valueOf(id)));
+            supplierDTOList.add(mapStructMapper.supplierToSupplierDTO(supplierService.findSupplierById(Long.valueOf(id))));
         } else {
-            supplierList = supplierService.findAllSuppliers();
+            List<Supplier> supplierList = supplierService.findAllSuppliers();
+            for(int i = 0; i < supplierList.size(); i++) {
+                supplierDTOList.add(mapStructMapper.supplierToSupplierDTO(supplierList.get(i)));
+            }
         }
-        return supplierList;
+        return supplierDTOList;
     }
 
-    public Supplier postSupplier(Supplier supplier){
-        return supplierService.saveOrUpdateSupplier(supplier);
+    public SupplierDTO postSupplier(SupplierDTO supplierDTO){
+        return mapStructMapper.supplierToSupplierDTO(supplierService.saveOrUpdateSupplier(mapStructMapper.supplierDTOToSupplier(supplierDTO)));
     }
 
     public void deleteSupplier(Long id) {
