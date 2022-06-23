@@ -1,5 +1,6 @@
-package com.leverx.supplierbootapp;
+package com.leverx.supplierbootapp.service;
 
+import com.leverx.supplierbootapp.SupplierBootAppApplication;
 import com.leverx.supplierbootapp.entity.Address;
 import com.leverx.supplierbootapp.service.AddressService;
 import org.junit.jupiter.api.Test;

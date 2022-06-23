@@ -1,7 +1,6 @@
 package com.leverx.supplierbootapp.controller;
 
 import com.leverx.supplierbootapp.dto.SupplierDTO;
-import com.leverx.supplierbootapp.entity.Supplier;
 import com.leverx.supplierbootapp.mapper.MapStructMapper;
 import com.leverx.supplierbootapp.request.MyRequestBody;
 import com.leverx.supplierbootapp.service.SupplierService;
@@ -50,10 +49,7 @@ public class SupplierControllerL0 {
         if(id != null) {
             supplierDTOList.add(mapStructMapper.supplierToSupplierDTO(supplierService.findSupplierById(Long.valueOf(id))));
         } else {
-            List<Supplier> supplierList = supplierService.findAllSuppliers();
-            for(int i = 0; i < supplierList.size(); i++) {
-                supplierDTOList.add(mapStructMapper.supplierToSupplierDTO(supplierList.get(i)));
-            }
+            supplierDTOList = mapStructMapper.listOfSuppliersToSuppliersDTO(supplierService.findAllSuppliers());
         }
         return supplierDTOList;
     }
