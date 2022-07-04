@@ -19,11 +19,14 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RequestMapping("/v4/suppliers")
 public class SupplierControllerL4 {
 
-    @Autowired
-    private SupplierService supplierService;
+    private final SupplierService supplierService;
+    private final MapStructMapper mapStructMapper;
 
     @Autowired
-    private MapStructMapper mapStructMapper;
+    public SupplierControllerL4(SupplierService supplierService, MapStructMapper mapStructMapper) {
+        this.supplierService = supplierService;
+        this.mapStructMapper = mapStructMapper;
+    }
 
     @GetMapping
     public CollectionModel<SupplierDTO> getAllSuppliers(){
@@ -60,7 +63,7 @@ public class SupplierControllerL4 {
 
     @PostMapping()
     public ResponseEntity<SupplierDTO> addSupplier(@RequestBody SupplierDTO supplierDTO) {
-        return ResponseEntity.status(HttpStatus.OK).body(mapStructMapper.supplierToSupplierDTO(
+        return ResponseEntity.status(HttpStatus.CREATED).body(mapStructMapper.supplierToSupplierDTO(
                 supplierService.saveOrUpdateSupplier(mapStructMapper.supplierDTOToSupplier(supplierDTO))));
     }
 

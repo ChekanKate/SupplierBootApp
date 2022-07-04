@@ -1,7 +1,8 @@
 INSERT INTO "supplier" VALUES
     (201, 'LeverX', 101),
     (202, 'SoftServe', 102),
-    (203, 'SupplierForDelete', 102);
+    (203, 'SupplierForDelete', 102),
+    (204, 'SupplierForUpdate', 102);
 
 INSERT INTO "order" VALUES
    (401, 'Order 1 to LeverX', 30000, 201),

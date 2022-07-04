@@ -2,7 +2,6 @@ package com.leverx.supplierbootapp.service;
 
 import com.leverx.supplierbootapp.SupplierBootAppApplication;
 import com.leverx.supplierbootapp.entity.Order;
-import com.leverx.supplierbootapp.service.OrderService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

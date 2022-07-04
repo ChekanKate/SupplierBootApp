@@ -16,6 +16,18 @@ public class SupplierDTO extends RepresentationModel<SupplierDTO> {
     private Set<Order> orders;
     private Set<Recipient> recipients;
 
+    public SupplierDTO() {
+    }
+
+    public SupplierDTO(String name) {
+        this.name = name;
+    }
+
+    public SupplierDTO(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
