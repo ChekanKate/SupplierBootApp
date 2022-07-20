@@ -1,4 +1,4 @@
-package com.leverx.supplierbootapp.request;
+package com.leverx.supplierbootapp.model;
 
 import com.leverx.supplierbootapp.dto.SupplierDTO;
 import org.springframework.stereotype.Component;

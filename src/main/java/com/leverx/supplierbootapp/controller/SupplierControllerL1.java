@@ -2,7 +2,7 @@ package com.leverx.supplierbootapp.controller;
 
 import com.leverx.supplierbootapp.dto.SupplierDTO;
 import com.leverx.supplierbootapp.mapper.MapStructMapper;
-import com.leverx.supplierbootapp.request.MyRequestBody;
+import com.leverx.supplierbootapp.model.MyRequestBody;
 import com.leverx.supplierbootapp.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -5,6 +5,9 @@ spring:
     password: "supplypg"
     driver-class-name: org.postgresql.Driver
 
+jwt:
+  secret: jwtSupplier
+
 #logging:
 #  level:
 #    root: DEBUG

@@ -27,7 +27,8 @@ public class SupplierControllerL4Test {
         mockMvc.perform(get("/v4/suppliers/{id}", 201).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(201))
-                .andExpect(jsonPath("$.name").value("LeverX"));
+                .andExpect(jsonPath("$.name").value("LeverX"))
+                .andExpect(jsonPath("$._links").exists());
     }
 
     @Test
