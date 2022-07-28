@@ -2,7 +2,6 @@ package com.leverx.supplierbootapp.service;
 
 import com.leverx.supplierbootapp.SupplierBootAppApplication;
 import com.leverx.supplierbootapp.entity.*;
-import com.leverx.supplierbootapp.service.SupplierService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -78,7 +77,7 @@ class SupplierServiceTests {
     @Test
     public void findAllTest(){
         List<Supplier> suppliers = supplierService.findAllSuppliers();
-        assertThat(suppliers.size()).isEqualTo(3);
+        assertThat(suppliers.size()).isEqualTo(4);
     }
 
     public Address createAddress() {
